@@ -1,0 +1,78 @@
+{
+  "events": [
+    {
+      "id": 5928101,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "Developers",
+      "organizer": "Adam",
+      "title": "São Paulo AI Tech Talk",
+      "description": "Welcome to the group. We’re excited to bring you the latest and practical technology on AI, Machine Learning, Deep Learning, Data Science and Big Data.",
+      "location": "São Paulo, Brasil",
+      "date": "03 Jan, 2019",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "id": 8419988,
+      "user": {
+        "id": "abc123",
+        "name": "Google Developers"
+      },
+      "category": "Developers",
+      "organizer": "Google Developers",
+      "title": "Google I/O 2019",
+      "description": "Year's developer festival",
+      "location": "Mountain View, CA",
+      "date": "7 May, 2019",
+      "time": "7:00",
+      "attendees": [
+        {
+          "name": "John Doe"
+        }
+      ]
+    },
+    {
+      "id": 4582797,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "Developers",
+      "organizer": "Adam",
+      "title": "Node Summit 2019",
+      "description": "Exploring Node.js new Features",
+      "location": "San Francisco, CA",
+      "date": "02 Feb, 2019",
+      "time": "1:00",
+      "attendees": [
+        {
+          "name": "Sarah"
+        },
+        {
+          "name": "Will"
+        }
+      ]
+    },
+    {
+      "id": 7067156,
+      "user": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "category": "education",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam Jahr"
+      },
+      "title": "ENG 101",
+      "description": "Teaching English in School",
+      "location": "Rio de Janeiro, Brazil",
+      "date": "2019-02-19T21:27:00.000Z",
+      "time": "15:00",
+      "attendees": []
+    }
+  ]
+}
