@@ -1,29 +1,38 @@
-# real-world-vue
+# Event maker
+
+Vue Application for creating events
+
+Part of the _Vue Mastery Course_ : Real World Vue
+
+### Dependencies
+
+- Vue
+- Vuex
+- Vue Router
+- Vuelidate
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b2b9617f-d5ae-4eb0-b377-b3c1e07cb969/deploy-status)](https://app.netlify.com/sites/event-maker-vue/deploys)
 
 ## Project setup
-```
-npm install
+
+```bash
+$ yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### Run the server
+
+```bash
+$ yarn serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+### Serve mock data
+
+```bash
+$ npm install -g json-server
+or
+$ yarn global add json-server
 ```
 
-### Run your tests
+```bash
+$ json-server --watch db.json
 ```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
