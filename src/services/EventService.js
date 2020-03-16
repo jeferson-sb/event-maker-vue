@@ -3,7 +3,7 @@ import axios from 'axios'
 const apiClient = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
-      ? process.env.JSON_SERVER_API_URL
+      ? process.env.VUE_APP_JSON_SERVER_URL
       : '/',
   withCredentials: false,
   headers: {
