@@ -3,6 +3,7 @@
     <h1>Create an Event</h1>
     <form @submit.prevent="createEvent">
       <BaseSelect
+        id="category"
         label="Select a category"
         :options="categories"
         v-model="event.category"
@@ -18,6 +19,7 @@
 
       <h3>Name & describe your event</h3>
       <BaseInput
+        id="title"
         label="Title"
         v-model="event.title"
         type="text"
@@ -34,6 +36,7 @@
       </template>
 
       <BaseInput
+        id="description"
         label="Description"
         v-model="event.description"
         type="text"
@@ -51,6 +54,7 @@
 
       <h3>Where is your event?</h3>
       <BaseInput
+        id="location"
         label="Location"
         v-model="event.location"
         type="text"
@@ -71,6 +75,7 @@
       <div class="field">
         <label>Date</label>
         <datepicker
+          id="date"
           v-model="event.date"
           placeholder="Select a date"
           :input-class="{ error: $v.event.category.$error }"
@@ -85,6 +90,7 @@
       </template>
 
       <BaseSelect
+        id="time"
         label="Select a time"
         :options="times"
         v-model="event.time"

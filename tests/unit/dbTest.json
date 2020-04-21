@@ -1,0 +1,38 @@
+{
+  "events": [
+    {
+      "id": 5928101,
+      "user": {
+        "id": "abc123",
+        "name": "Jeferson"
+      },
+      "category": "Developers",
+      "organizer": "Adam",
+      "title": "São Paulo AI Tech Talk",
+      "description": "Welcome to the group. We’re excited to bring you the latest and practical technology on AI, Machine Learning, Deep Learning, Data Science and Big Data.",
+      "location": "São Paulo, Brasil",
+      "date": "03 Jan, 2019",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "id": 8419988,
+      "user": {
+        "id": "abc123",
+        "name": "Google Developers"
+      },
+      "category": "Developers",
+      "organizer": "Google Developers",
+      "title": "Google I/O 2019",
+      "description": "Year's developer festival",
+      "location": "Mountain View, CA",
+      "date": "7 May, 2019",
+      "time": "7:00",
+      "attendees": [
+        {
+          "name": "John Doe"
+        }
+      ]
+    }
+  ]
+}
