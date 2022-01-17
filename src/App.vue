@@ -1,9 +1,7 @@
 <template>
-  <div id="app">
-    <NavBar />
-    <NotificationContainer />
-    <router-view />
-  </div>
+  <NavBar />
+  <NotificationContainer />
+  <router-view />
 </template>
 
 <script>

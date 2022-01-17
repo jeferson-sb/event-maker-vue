@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date | date }}</span>
+  <main>
+    <header class="event-header">
+      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
       <h5>Category: {{ event.category }}</h5>
-    </div>
+    </header>
+
     <BaseIcon name="map">
       <h2>Location</h2>
     </BaseIcon>
-    <!-- Put a leaflet map here -->
     <address>{{ event.location }}</address>
+
     <h2>Event details</h2>
     <p>{{ event.description }}</p>
+
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{
-        event.attendees ? event.attendees.length : 0
-      }}</span>
+      <span class="badge -fill-gradient">
+        {{ event.attendees ? event.attendees.length : 0 }}
+      </span>
     </h2>
+
     <ul class="list-group">
       <li
         v-for="(attendee, index) in event.attendees"
@@ -28,7 +31,7 @@
         <b>{{ attendee.name }}</b>
       </li>
     </ul>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -36,13 +39,13 @@ export default {
   props: {
     event: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
 
-<style>
+<style scoped>
 .location {
   margin-bottom: 0;
 }
