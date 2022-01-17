@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import NotificationBar from '@/components/NotificationBar.vue'
+import NotificationBar from './NotificationBar.vue'
 import { mapState } from 'vuex'
 
 export default {
   components: {
-    NotificationBar
+    NotificationBar,
   },
-  computed: mapState('notification', ['notifications'])
+  computed: mapState('notification', ['notifications']),
 }
 </script>
 
