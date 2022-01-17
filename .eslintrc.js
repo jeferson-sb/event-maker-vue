@@ -6,13 +6,23 @@ module.exports = {
   },
   extends: [
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
     'prettier',
+    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
   plugins: ['vue', 'prettier'],
-  rules: {},
+  rules: {
+    'prettier/prettier': [
+      'warn',
+      {},
+      {
+        usePrettierrc: true,
+      },
+    ],
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+  },
 }

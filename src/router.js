@@ -27,11 +27,11 @@ export const routes = [
     beforeEnter(routeTo, routeFrom, next) {
       store
         .dispatch('event/fetchEvent', routeTo.params.id)
-        .then((event) => {
+        .then(event => {
           routeTo.params.event = event
           next()
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.response && error.response.status == 404) {
             next({ name: '404', params: { resource: 'event' } })
           } else {

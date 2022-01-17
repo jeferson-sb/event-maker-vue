@@ -2,7 +2,7 @@
   <div>
     <h1>Oops!</h1>
     <h3>The {{ resource }} you're looking for is not here.</h3>
-    <router-link :to="{ name: 'event-list' }">Go Back home</router-link>
+    <router-link :to="{ name: 'EventList' }">Go back home</router-link>
   </div>
 </template>
 
@@ -11,8 +11,8 @@ export default {
   props: {
     resource: {
       type: String,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>
