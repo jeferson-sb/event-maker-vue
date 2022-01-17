@@ -11,36 +11,36 @@ export default {
   props: {
     notification: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      timeout: null
+      timeout: null,
     }
-  },
-  mounted() {
-    this.timeout = setTimeout(() => this.remove(this.notification), 3000)
-  },
-  beforeDestroy() {
-    clearTimeout(this.timeout)
   },
   computed: {
     notificationTypeClass() {
       return `-text-${this.notification.type}`
-    }
+    },
   },
-  methods: mapActions('notification', ['remove'])
+  mounted() {
+    this.timeout = setTimeout(() => this.remove(this.notification), 3000)
+  },
+  beforeUnmount() {
+    clearTimeout(this.timeout)
+  },
+  methods: mapActions('notification', ['remove']),
 }
 </script>
 
 <style scoped>
 .notification-bar {
   margin: 1em 0 1em;
-  box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   border: 2px solid #303030;
   border-radius: 4px;
-  padding: .3rem 1rem;
+  padding: 0.3rem 1rem;
   transition: all 1s ease-in-out;
 }
 </style>
