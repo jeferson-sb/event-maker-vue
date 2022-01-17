@@ -1,12 +1,16 @@
 <template>
-  <div>
+  <main>
     <h1>Events for {{ user.user.name }}</h1>
     <transition-group name="slide-up" tag="div">
-      <EventCard v-for="event in event.events" :key="event.id" :event="event" />
+      <EventCard
+        v-for="event in event.events"
+        :key="event.id"
+        :event-data="event"
+      />
     </transition-group>
     <template v-if="page != 1">
       <router-link
-        :to="{ name: 'event-list', query: { page: page - 1 } }"
+        :to="{ name: 'EventList', query: { page: page - 1 } }"
         rel="prev"
         >Prev Page</router-link
       >
@@ -14,23 +18,24 @@
     </template>
     <router-link
       v-if="hasNextPage"
-      :to="{ name: 'event-list', query: { page: page + 1 } }"
+      :to="{ name: 'EventList', query: { page: page + 1 } }"
       rel="next"
       >Next Page</router-link
     >
-  </div>
+  </main>
 </template>
 
 <script>
-import EventCard from '@/components/EventCard.vue'
 import { mapState } from 'vuex'
-import store from '@/store'
+
+import EventCard from '@/components/EventCard.vue'
+import { store } from '@/store'
 
 function getPageEvents(routeTo, next) {
   const currentPage = parseInt(routeTo.query.page) || 1
   store
     .dispatch('event/fetchEvents', {
-      page: currentPage
+      page: currentPage,
     })
     .then(() => {
       routeTo.params.page = currentPage
@@ -39,14 +44,8 @@ function getPageEvents(routeTo, next) {
 }
 
 export default {
-  props: {
-    page: {
-      type: Number,
-      required: true
-    }
-  },
   components: {
-    EventCard
+    EventCard,
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
     getPageEvents(routeTo, next)
@@ -54,12 +53,18 @@ export default {
   beforeRouteUpdate(routeTo, routeFrom, next) {
     getPageEvents(routeTo, next)
   },
+  props: {
+    page: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
     hasNextPage() {
       return this.event.eventsTotal > this.page * this.event.perPage
     },
-    ...mapState(['event', 'user'])
-  }
+    ...mapState(['event', 'user']),
+  },
 }
 </script>
 
