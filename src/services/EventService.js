@@ -1,16 +1,13 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL:
-    process.env.NODE_ENV === 'production'
-      ? process.env.VUE_APP_JSON_SERVER_URL
-      : '/',
+  baseURL: import.meta.env.VITE_JSON_SERVER_URL,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
-  timeout: 10000
+  timeout: 10000,
 })
 
 export default {
@@ -22,5 +19,5 @@ export default {
   },
   postEvent(event) {
     return apiClient.post('/events', event)
-  }
+  },
 }
