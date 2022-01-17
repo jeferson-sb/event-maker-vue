@@ -1,5 +1,5 @@
 <template>
-  <button v-on="$listeners" class="button" :class="buttonClass" v-bind="$attrs">
+  <button :class="buttonClass" v-bind="$attrs">
     <slot />
   </button>
 </template>
@@ -9,9 +9,10 @@ export default {
   inheritAttrs: false,
   props: {
     buttonClass: {
-      type: String
-    }
-  }
+      type: String,
+      default: 'button',
+    },
+  },
 }
 </script>
 

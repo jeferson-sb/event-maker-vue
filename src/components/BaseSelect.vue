@@ -1,35 +1,45 @@
 <template>
-  <div>
-    <label v-if="label">{{ label }}</label>
-    <select
-      type="text"
-      :value="value"
-      @change="updateValue"
-      v-bind="$attrs"
-      v-on="$listeners"
+  <label v-if="label">{{ label }}</label>
+  <select
+    class="field"
+    v-bind="$attrs"
+    :value="modelValue"
+    @change="$emit('update:modelValue', $event.target.value)"
+  >
+    <option
+      v-for="option in options"
+      :key="option"
+      :value="option"
+      :selected="option === modelValue"
     >
-      <option
-        v-for="option in options"
-        :key="option"
-        :selected="option === value"
-        >{{ option }}</option
-      >
-    </select>
-  </div>
+      {{ option }}
+    </option>
+  </select>
+  <p v-if="error" class="error" aria-live="assertive">
+    {{ error }}
+  </p>
 </template>
 
 <script>
-import { formFieldMixin } from '../mixins/formFieldMixin'
-
 export default {
-  mixins: [formFieldMixin],
   props: {
+    label: {
+      type: String,
+      default: '',
+    },
+    modelValue: {
+      type: [String, Number],
+      default: '',
+    },
     options: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+    error: {
+      type: String,
+      default: '',
+    },
+  },
+  emits: ['update:modelValue'],
 }
 </script>
-
-<style></style>

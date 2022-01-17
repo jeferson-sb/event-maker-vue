@@ -1,6 +1,7 @@
 <template>
   <div class="icon-wrapper">
     <svg class="icon" :width="width" :height="height">
+      <title>{{ name }}</title>
       <use v-bind="{ 'xlink:href': '/feather-sprite.svg#' + name }"></use>
     </svg>
     <slot></slot>
@@ -9,18 +10,21 @@
 
 <script>
 export default {
-  name: 'Icon',
+  name: 'BaseIcon',
   props: {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     width: {
       type: [Number, String],
-      default: 24
+      default: 24,
     },
     height: {
       type: [Number, String],
-      default: 24
-    }
-  }
+      default: 24,
+    },
+  },
 }
 </script>
 
