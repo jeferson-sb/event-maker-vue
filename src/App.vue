@@ -2,22 +2,23 @@
   <div id="app">
     <NavBar />
     <NotificationContainer />
-    <router-view :key="$route.fullPath" />
+    <router-view />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import NotificationContainer from '@/components/NotificationContainer.vue'
+
 export default {
   components: {
     NavBar,
-    NotificationContainer
-  }
+    NotificationContainer,
+  },
 }
 </script>
 
-<style lang="scss">
+<style>
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
