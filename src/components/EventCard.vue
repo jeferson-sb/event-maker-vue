@@ -4,21 +4,31 @@
     :to="{ name: 'EventDetails', params: { id: eventData.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow">@{{ eventData.time }} on {{ eventData.date }}</span>
+      <span class="eyebrow">{{ formattedDatetime }}</span>
       <h4 class="title">{{ eventData.title }}</h4>
       <BaseIcon name="users">
-        {{ eventData.attendees.length }} attending
+        <span v-if="eventData.attendees.length">
+          {{ eventData.attendees.length }} attending
+        </span>
+        <span v-else>No users attending yet</span>
       </BaseIcon>
     </div>
   </router-link>
 </template>
 
 <script>
+import { formatDateTime } from '@/composables/date'
+
 export default {
   props: {
     eventData: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    formattedDatetime() {
+      return formatDateTime(this.eventData.datetime)
     },
   },
 }

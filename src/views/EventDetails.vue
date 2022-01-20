@@ -1,9 +1,13 @@
 <template>
   <main>
     <header class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <span class="eyebrow">
+        <BaseIcon name="clock">
+          {{ formattedDatetime }}
+        </BaseIcon>
+      </span>
       <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
+      <h5>Organized by {{ event?.organizer?.user?.name }}</h5>
       <h5>Category: {{ event.category }}</h5>
     </header>
 
@@ -35,11 +39,18 @@
 </template>
 
 <script>
+import { formatDateTime } from '@/composables/date'
+
 export default {
   props: {
     event: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    formattedDatetime() {
+      return formatDateTime(this.event.datetime)
     },
   },
 }

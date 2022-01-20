@@ -58,7 +58,7 @@ export default {
   },
   emits: ['update:modelValue'],
   setup() {
-    const getNextID = useUniqueID()
+    const getNextID = useUniqueID
 
     return {
       getNextID,

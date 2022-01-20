@@ -8,6 +8,7 @@ export const state = {
   event: {},
   perPage: 3,
 }
+
 export const mutations = {
   ADD_EVENT(state, event) {
     state.events.push(event)
@@ -22,6 +23,7 @@ export const mutations = {
     state.event = event
   },
 }
+
 export const actions = {
   createEvent({ commit, dispatch }, event) {
     return EventService.postEvent(event)
@@ -58,7 +60,7 @@ export const actions = {
       })
   },
   fetchEvent({ commit, getters, state }, id) {
-    if (id == state.event.id) {
+    if (id === state.event.id) {
       return state.event
     }
 
@@ -75,6 +77,7 @@ export const actions = {
     }
   },
 }
+
 export const getters = {
   getEventById: state => id => {
     return state.events.find(event => event.id === id)

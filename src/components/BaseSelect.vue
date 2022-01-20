@@ -1,11 +1,17 @@
 <template>
-  <label v-if="label">{{ label }}</label>
+  <label v-if="label" :for="id">{{ label }}</label>
   <select
+    :id="id"
     class="field"
-    v-bind="$attrs"
+    v-bind="{
+      ...$attrs,
+    }"
     :value="modelValue"
     @change="$emit('update:modelValue', $event.target.value)"
   >
+    <option :value="label" selected>
+      {{ label }}
+    </option>
     <option
       v-for="option in options"
       :key="option"
@@ -23,6 +29,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     label: {
       type: String,
       default: '',

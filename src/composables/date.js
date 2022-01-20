@@ -5,3 +5,10 @@ export function formatDate(date) {
     year: 'numeric',
   })
 }
+
+export function formatDateTime(date) {
+  return new Intl.DateTimeFormat('en', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+  }).format(new Date(date))
+}

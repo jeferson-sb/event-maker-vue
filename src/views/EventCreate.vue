@@ -1,190 +1,135 @@
 <template>
-  <div>
+  <main>
     <h1>Create an Event</h1>
-    <form @submit.prevent="createEvent">
+    <form @submit="onSubmit">
       <BaseSelect
         id="category"
+        v-model="category"
         label="Select a category"
         :options="categories"
-        v-model="event.category"
-        :class="{ error: $v.event.category.$error }"
-        @blur="$v.event.category.$touch()"
+        :error="errors.category"
+        aria-label="Choose a category for your event"
       />
 
-      <template v-if="$v.event.category.$error">
-        <p v-if="!$v.event.category.required" class="errorMessage">
-          Category is required.
-        </p>
-      </template>
-
-      <h3>Name & describe your event</h3>
+      <h2>Name & describe your event</h2>
       <BaseInput
         id="title"
-        label="Title"
-        v-model="event.title"
+        v-model="title"
         type="text"
-        placeholder="Title"
-        class="field"
-        :class="{ error: $v.event.title.$error }"
-        @blur="$v.event.title.$touch()"
+        label="Title"
+        placeholder="Web Development 101"
+        :error="errors.title"
       />
-
-      <template v-if="$v.event.title.$error">
-        <p v-if="!$v.event.title.required" class="errorMessage">
-          Title is required.
-        </p>
-      </template>
 
       <BaseInput
         id="description"
+        v-model="description"
         label="Description"
-        v-model="event.description"
         type="text"
-        placeholder="Description"
-        class="field"
-        :class="{ error: $v.event.description.$error }"
-        @blur="$v.event.description.$touch()"
+        placeholder="My web development meeting talk"
+        :error="errors.description"
       />
 
-      <template v-if="$v.event.description.$error">
-        <p v-if="!$v.event.description.required" class="errorMessage">
-          Description is required.
-        </p>
-      </template>
-
-      <h3>Where is your event?</h3>
+      <h2>Where is your event?</h2>
       <BaseInput
         id="location"
+        v-model="location"
         label="Location"
-        v-model="event.location"
         type="text"
         placeholder="Add a Location"
-        class="field"
-        :class="{ error: $v.event.location.$error }"
-        @blur="$v.event.location.$touch()"
+        :error="errors.location"
       />
 
-      <template v-if="$v.event.location.$error">
-        <p v-if="!$v.event.location.required" class="errorMessage">
-          Location is required.
-        </p>
-      </template>
-
-      <h3>When is your event?</h3>
-
-      <div class="field">
-        <label>Date</label>
-        <datepicker
-          id="date"
-          v-model="event.date"
-          placeholder="Select a date"
-          :input-class="{ error: $v.event.category.$error }"
-          @opened="$v.event.date.$touch()"
-        />
-      </div>
-
-      <template v-if="$v.event.date.$error">
-        <p v-if="!$v.event.date.required" class="errorMessage">
-          Date is required.
-        </p>
-      </template>
-
-      <BaseSelect
-        id="time"
-        label="Select a time"
-        :options="times"
-        v-model="event.time"
-        class="field"
-        :class="{ error: $v.event.time.$error }"
-        @blur="$v.event.time.$touch()"
+      <h2>When is your event?</h2>
+      <BaseInput
+        id="datetime"
+        v-model="datetime"
+        type="datetime-local"
+        name="datetime"
+        label="Datetime"
+        aria-label="Choose a date and time for your event"
+        :error="errors.datetime"
       />
 
-      <template v-if="$v.event.time.$error">
-        <p v-if="!$v.event.time.required" class="errorMessage">
-          Time is required.
-        </p>
-      </template>
-
-      <BaseButton
-        type="submit"
-        buttonClass="-fill-gradient"
-        :disabled="$v.$anyError"
-        >Submit</BaseButton
-      >
-      <p v-if="$v.$anyError" class="errorMessage">
-        Please fill out the required field(s).
-      </p>
+      <BaseButton type="submit" class="-fill-gradient"> Submit </BaseButton>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
-import { required } from 'vuelidate/lib/validators'
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { useField, useForm } from 'vee-validate'
+import { object, string, date as YupDate } from 'yup'
 
 export default {
-  components: {
-    Datepicker
-  },
-  data() {
-    const times = []
-    for (let i = 1; i <= 24; i++) {
-      times.push(i + ':00')
-    }
-    return {
-      times,
-      categories: this.$store.state.categories,
-      event: this.createFreshEventObject()
-    }
-  },
-  validations: {
-    event: {
-      category: { required },
-      title: { required },
-      description: { required },
-      location: { required },
-      date: { required },
-      time: { required }
-    }
-  },
-  methods: {
-    createEvent() {
-      this.$v.$touch()
-      if (!this.$v.$invalid) {
-        NProgress.start()
-        this.$store
-          .dispatch('event/createEvent', this.event)
-          .then(() => {
-            this.$router.push({
-              name: 'event-show',
-              params: { id: this.event.id }
-            })
-            this.event = this.createFreshEventObject()
-          })
-          .catch(() => {
-            NProgress.done()
-          })
-      }
-    },
-    createFreshEventObject() {
-      const user = this.$store.state.user.user
-      const id = Math.floor(Math.random() * 10000000)
+  setup() {
+    const categories = ref([
+      'sustainability',
+      'nature',
+      'animal welfare',
+      'housing',
+      'education',
+      'tech',
+      'food',
+      'community',
+      'business',
+    ])
 
-      return {
-        id: id,
-        user: user,
-        category: '',
-        organizer: user,
-        title: '',
-        description: '',
-        location: '',
-        date: '',
-        time: '',
-        attendees: []
+    const store = useStore()
+    const router = useRouter()
+
+    const validationSchema = object({
+      category: string().required(),
+      title: string().required().min(8),
+      description: string().required(),
+      location: string(),
+      datetime: YupDate().default(function () {
+        return new Date()
+      }),
+    })
+
+    const { errors, handleSubmit } = useForm({
+      validationSchema,
+    })
+
+    const { value: category } = useField('category')
+    const { value: title } = useField('title')
+    const { value: description } = useField('description')
+    const { value: location } = useField('location')
+    const { value: datetime } = useField('datetime')
+
+    const onSubmit = handleSubmit(async event => {
+      try {
+        NProgress.start()
+
+        await store.dispatch('event/createEvent', {
+          ...event,
+          organizer: store.state.user,
+          attendees: [],
+        })
+
+        router.push({
+          name: 'EventList',
+        })
+      } catch (error) {
+        NProgress.done()
       }
+    })
+
+    return {
+      onSubmit,
+      categories,
+      category,
+      title,
+      description,
+      location,
+      datetime,
+      errors,
     }
-  }
+  },
 }
 </script>
 
