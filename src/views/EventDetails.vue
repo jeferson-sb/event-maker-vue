@@ -1,30 +1,34 @@
 <template>
   <main>
     <header class="event-header">
-      <span class="eyebrow">
+      <time class="event-datetime">
         <BaseIcon name="clock">
           {{ formattedDatetime }}
         </BaseIcon>
-      </span>
-      <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event?.organizer?.user?.name }}</h5>
-      <h5>Category: {{ event.category }}</h5>
+      </time>
+      <h1 class="heading-2">{{ event.title }}</h1>
+      <strong>Organized by {{ event?.organizer?.user?.name }}</strong>
+      <p>Category: {{ event.category }}</p>
     </header>
 
     <BaseIcon name="map">
-      <h2>Location</h2>
+      <h2 class="heading-3">Location</h2>
     </BaseIcon>
     <address>{{ event.location }}</address>
 
-    <h2>Event details</h2>
+    <BaseIcon name="file-text">
+      <h2 class="heading-3">Event details</h2>
+    </BaseIcon>
     <p>{{ event.description }}</p>
 
-    <h2>
-      Attendees
-      <span class="badge -fill-gradient">
-        {{ event.attendees ? event.attendees.length : 0 }}
-      </span>
-    </h2>
+    <BaseIcon name="users">
+      <h2 class="heading-3">
+        Attendees
+        <span class="badge badge--fill-gradient">
+          {{ event.attendees ? event.attendees.length : 0 }}
+        </span>
+      </h2>
+    </BaseIcon>
 
     <ul class="list-group">
       <li
@@ -57,22 +61,37 @@ export default {
 </script>
 
 <style scoped>
-.location {
-  margin-bottom: 0;
+.event-header {
+  margin-bottom: var(--space-xl);
 }
-.location > .icon {
-  margin-left: 10px;
+
+main > .icon-wrapper {
+  margin-top: var(--space-xl);
 }
-.event-header > .title {
-  margin: 0;
+
+.event-datetime {
+  color: var(--color-gray);
 }
-.list-group {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 5px;
+  border-radius: 50%;
+  font-size: var(--text-xsm);
+  font-weight: var(--regular);
+  vertical-align: middle;
 }
+.badge--fill-gradient {
+  background: linear-gradient(to right, hsl(174, 79%, 42%), hsl(105, 51%, 61%));
+  color: #fff;
+}
+
 .list-group > .list-item {
   padding: 1em 0;
-  border-bottom: solid 1px #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }
 </style>

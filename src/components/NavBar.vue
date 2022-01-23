@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <router-link to="/" class="brand">Real World Events</router-link>
-    <ul id="nav">
+    <ul id="links">
       <router-link :to="{ name: 'EventList' }">List</router-link>
       |
       <router-link :to="{ name: 'EventCreate' }">Create</router-link>
@@ -9,32 +9,26 @@
   </nav>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style>
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  max-height: 60px;
 }
 .nav > .brand {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #39b982;
+  font-weight: var(--bold);
+  font-size: var(--text-xl);
+  color: var(--color-primary);
   text-decoration: none;
 }
-.nav .nav-item {
-  box-sizing: border-box;
+#links a {
   margin: 0 5px;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--color-black);
   text-decoration: none;
 }
-.nav .nav-item.router-link-exact-active {
-  color: #39b982;
-  border-bottom: solid 2px #39b982;
+#links a.router-link-active {
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
 }
 </style>

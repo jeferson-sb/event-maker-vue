@@ -36,9 +36,9 @@ export default {
 
 <style scoped>
 .notification-bar {
-  margin: 1em 0 1em;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  border: 2px solid #303030;
+  margin: 1rem 0 1rem;
+  box-shadow: var(--shadow-elevation-low);
+  border: 2px solid var(--color-black);
   border-radius: 4px;
   padding: 0.3rem 1rem;
   transition: all 1s ease-in-out;

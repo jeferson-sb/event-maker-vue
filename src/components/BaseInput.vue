@@ -68,7 +68,24 @@ export default {
 </script>
 
 <style scoped>
-.error > input {
-  border: 1px solid rgb(255, 70, 70);
+label {
+  font-weight: var(--bold);
+  color: hsla(0, 0%, 0%, 0.7);
+}
+
+.field {
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid hsla(0, 0%, 0%, 0.4);
+  min-height: 50px;
+  font-size: var(--text-lg);
+}
+
+[aria-invalid='true'] {
+  border: 1px solid var(--color-error);
+}
+
+.error {
+  color: var(--color-error);
 }
 </style>

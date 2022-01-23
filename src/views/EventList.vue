@@ -1,12 +1,12 @@
 <template>
   <main>
-    <h1>Events for {{ user.user.name }}</h1>
+    <h1 class="heading-1">Events for {{ user.user.name }}</h1>
     <EventCard
       v-for="(event, index) in event.events"
       :key="event.id"
       :event-data="event"
-      class="slide-in-bottom"
       :style="`--delay: ${index * 100}ms`"
+      class="slide-in-bottom"
     />
     <template v-if="page != 1">
       <router-link

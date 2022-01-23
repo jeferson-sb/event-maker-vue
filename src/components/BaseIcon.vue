@@ -32,8 +32,8 @@ export default {
 .icon-wrapper {
   display: inline-flex;
   align-items: center;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--text-base);
+  font-weight: var(--regular);
 }
 
 .icon {

@@ -10,6 +10,8 @@ import BaseSelect from '@/components/BaseSelect.vue'
 import BaseButton from '@/components/BaseButton.vue'
 import 'nprogress/nprogress.css'
 
+import '@/assets/styles/reset.css'
+
 const app = createApp(App)
 
 app.component('BaseIcon', BaseIcon)

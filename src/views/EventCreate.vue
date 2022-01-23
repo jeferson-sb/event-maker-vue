@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Create an Event</h1>
+    <h1 class="heading-2">Create an Event</h1>
     <form @submit="onSubmit">
       <BaseSelect
         id="category"
@@ -11,7 +11,7 @@
         aria-label="Choose a category for your event"
       />
 
-      <h2>Name & describe your event</h2>
+      <h2 class="heading-3">Name and describe your event</h2>
       <BaseInput
         id="title"
         v-model="title"
@@ -30,7 +30,7 @@
         :error="errors.description"
       />
 
-      <h2>Where is your event?</h2>
+      <h2 class="heading-3">Where is your event?</h2>
       <BaseInput
         id="location"
         v-model="location"
@@ -40,7 +40,7 @@
         :error="errors.location"
       />
 
-      <h2>When is your event?</h2>
+      <h2 class="heading-3">When is your event?</h2>
       <BaseInput
         id="datetime"
         v-model="datetime"
@@ -51,18 +51,19 @@
         :error="errors.datetime"
       />
 
-      <BaseButton type="submit" class="-fill-gradient"> Submit </BaseButton>
+      <BaseButton type="submit" class="button--fill-gradient">
+        Submit
+      </BaseButton>
     </form>
   </main>
 </template>
 
 <script>
 import NProgress from 'nprogress'
-import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useField, useForm } from 'vee-validate'
-import { object, string, date as YupDate } from 'yup'
+import { object, string, date } from 'yup'
 
 export default {
   setup() {
@@ -73,10 +74,8 @@ export default {
       category: string().required(),
       title: string().required().min(8),
       description: string().required(),
-      location: string(),
-      datetime: YupDate().default(function () {
-        return new Date()
-      }),
+      location: string().required(),
+      datetime: date().default(() => new Date()),
     })
 
     const { errors, handleSubmit } = useForm({
@@ -122,10 +121,15 @@ export default {
 </script>
 
 <style scoped>
-.field {
-  margin-bottom: 24px;
+[class^='heading'] {
+  margin-top: var(--space-xl);
 }
-.errorMessage {
-  color: rgb(255, 70, 70);
+
+:deep(label) {
+  margin-top: var(--space-sm);
+}
+
+.button {
+  margin-top: var(--space-sm);
 }
 </style>

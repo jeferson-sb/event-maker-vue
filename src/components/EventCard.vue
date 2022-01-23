@@ -3,9 +3,9 @@
     class="event-link"
     :to="{ name: 'EventDetails', params: { id: eventData.id } }"
   >
-    <div class="event-card -shadow">
-      <span class="eyebrow">{{ formattedDatetime }}</span>
-      <h4 class="title">{{ eventData.title }}</h4>
+    <div class="event-card">
+      <time class="event-datetime">{{ formattedDatetime }}</time>
+      <h2 class="heading-4">{{ eventData.title }}</h2>
       <BaseIcon name="users">
         <span v-if="eventData.attendees.length">
           {{ eventData.attendees.length }} attending
@@ -36,26 +36,28 @@ export default {
 
 <style scoped>
 .event-card {
-  padding: 20px;
+  padding: var(--space-lg);
   margin-bottom: 24px;
-  transition: all 0.2s linear;
+  transition: all 300ms linear;
   cursor: pointer;
+  box-shadow: var(--shadow-elevation-medium);
+  will-change: transform, box-shadow;
+  transform: perspective(1px) translateZ(0);
 }
 
 .event-card:hover {
   transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+  backface-visibility: hidden;
+  box-shadow: var(--shadow-elevation-high);
 }
-
-.event-card > .title {
-  margin: 0;
-}
-
 .event-link {
   display: inline-block;
   width: 100%;
-  color: black;
+  color: var(--color-black);
   text-decoration: none;
-  font-weight: 100;
+}
+
+.event-datetime {
+  font-size: var(--text-xl);
 }
 </style>
