@@ -66,18 +66,6 @@ import { object, string, date as YupDate } from 'yup'
 
 export default {
   setup() {
-    const categories = ref([
-      'sustainability',
-      'nature',
-      'animal welfare',
-      'housing',
-      'education',
-      'tech',
-      'food',
-      'community',
-      'business',
-    ])
-
     const store = useStore()
     const router = useRouter()
 
@@ -121,7 +109,7 @@ export default {
 
     return {
       onSubmit,
-      categories,
+      categories: store.state.categories,
       category,
       title,
       description,

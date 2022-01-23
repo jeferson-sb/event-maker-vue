@@ -17,8 +17,10 @@ export const store = createStore({
       'animal welfare',
       'housing',
       'education',
+      'tech',
       'food',
       'community',
+      'business',
     ],
   },
 })
