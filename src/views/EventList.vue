@@ -1,13 +1,13 @@
 <template>
   <main>
     <h1>Events for {{ user.user.name }}</h1>
-    <transition-group name="slide-up" tag="div">
-      <EventCard
-        v-for="event in event.events"
-        :key="event.id"
-        :event-data="event"
-      />
-    </transition-group>
+    <EventCard
+      v-for="(event, index) in event.events"
+      :key="event.id"
+      :event-data="event"
+      class="slide-in-bottom"
+      :style="`--delay: ${index * 100}ms`"
+    />
     <template v-if="page != 1">
       <router-link
         :to="{ name: 'EventList', query: { page: page - 1 } }"
@@ -32,7 +32,7 @@ import EventCard from '@/components/EventCard.vue'
 import { store } from '@/store'
 
 function getPageEvents(routeTo, next) {
-  const currentPage = parseInt(routeTo.query.page) || 1
+  const currentPage = parseInt(routeTo.query.page, 10) || 1
   store
     .dispatch('event/fetchEvents', {
       page: currentPage,
@@ -69,14 +69,26 @@ export default {
 </script>
 
 <style scoped>
-.slide-up-enter {
-  opacity: 0;
-  transform: translateY(10px);
+.slide-in-bottom {
+  --delay: ;
+  animation: slide-in-bottom 600ms cubic-bezier(0.215, 0.61, 0.355, 1) both;
+  animation-delay: var(--delay);
 }
-.slide-up-enter-active {
-  transition: all 0.5s ease;
-}
-.slide-up-move {
-  transition: transform 0.5s ease-out;
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

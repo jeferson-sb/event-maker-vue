@@ -52,6 +52,8 @@ export default {
 }
 
 .event-link {
+  display: inline-block;
+  width: 100%;
   color: black;
   text-decoration: none;
   font-weight: 100;
