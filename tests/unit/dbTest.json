@@ -1,38 +1,41 @@
 {
   "events": [
     {
-      "id": 5928101,
-      "user": {
-        "id": "abc123",
-        "name": "Jeferson"
+      "category": "nature",
+      "title": "Breathing Meditation",
+      "description": "improve your focus by paying attention on your breathing",
+      "location": "Yoga Space, Dublin",
+      "datetime": "2022-05-09T17:00",
+      "organizer": {
+        "user": {
+          "id": "137784959732816",
+          "name": "John"
+        }
       },
-      "category": "Developers",
-      "organizer": "Adam",
-      "title": "São Paulo AI Tech Talk",
-      "description": "Welcome to the group. We’re excited to bring you the latest and practical technology on AI, Machine Learning, Deep Learning, Data Science and Big Data.",
-      "location": "São Paulo, Brasil",
-      "date": "03 Jan, 2019",
-      "time": "2:00",
-      "attendees": []
-    },
-    {
-      "id": 8419988,
-      "user": {
-        "id": "abc123",
-        "name": "Google Developers"
-      },
-      "category": "Developers",
-      "organizer": "Google Developers",
-      "title": "Google I/O 2019",
-      "description": "Year's developer festival",
-      "location": "Mountain View, CA",
-      "date": "7 May, 2019",
-      "time": "7:00",
       "attendees": [
         {
-          "name": "John Doe"
+          "name": "Sarah"
+        },
+        {
+          "name": "Sandy"
         }
-      ]
+      ],
+      "id": 143084451425143
+    },
+    {
+      "category": "education",
+      "title": "Exercise Practice",
+      "description": "Series of group exercises to muscles",
+      "location": "Hong Kong Park",
+      "datetime": "2022-03-19T10:00",
+      "organizer": {
+        "user": {
+          "id": "137784959732816",
+          "name": "John"
+        }
+      },
+      "attendees": [],
+      "id": 336142729753176
     }
   ]
 }
