@@ -6,7 +6,7 @@
         id="category"
         v-model="category"
         label="Select a category"
-        :options="categories"
+        :options="store.state.categories"
         :error="errors.category"
         aria-label="Choose a category for your event"
       />
@@ -58,66 +58,51 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import NProgress from 'nprogress'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { useField, useForm } from 'vee-validate'
 import { object, string, date } from 'yup'
 
-export default {
-  setup() {
-    const store = useStore()
-    const router = useRouter()
+const store = useStore()
+const router = useRouter()
 
-    const validationSchema = object({
-      category: string().required(),
-      title: string().required().min(8),
-      description: string().required(),
-      location: string().required(),
-      datetime: date().default(() => new Date()),
+const validationSchema = object({
+  category: string().required(),
+  title: string().required().min(8),
+  description: string().required(),
+  location: string().required(),
+  datetime: date().default(() => new Date()),
+})
+
+const { errors, handleSubmit } = useForm({
+  validationSchema,
+})
+
+const { value: category } = useField('category')
+const { value: title } = useField('title')
+const { value: description } = useField('description')
+const { value: location } = useField('location')
+const { value: datetime } = useField('datetime')
+
+const onSubmit = handleSubmit(async event => {
+  try {
+    NProgress.start()
+
+    await store.dispatch('event/createEvent', {
+      ...event,
+      organizer: store.state.user,
+      attendees: [],
     })
 
-    const { errors, handleSubmit } = useForm({
-      validationSchema,
+    router.push({
+      name: 'EventList',
     })
-
-    const { value: category } = useField('category')
-    const { value: title } = useField('title')
-    const { value: description } = useField('description')
-    const { value: location } = useField('location')
-    const { value: datetime } = useField('datetime')
-
-    const onSubmit = handleSubmit(async event => {
-      try {
-        NProgress.start()
-
-        await store.dispatch('event/createEvent', {
-          ...event,
-          organizer: store.state.user,
-          attendees: [],
-        })
-
-        router.push({
-          name: 'EventList',
-        })
-      } catch (error) {
-        NProgress.done()
-      }
-    })
-
-    return {
-      onSubmit,
-      categories: store.state.categories,
-      category,
-      title,
-      description,
-      location,
-      datetime,
-      errors,
-    }
-  },
-}
+  } catch (error) {
+    NProgress.done()
+  }
+})
 </script>
 
 <style scoped>
