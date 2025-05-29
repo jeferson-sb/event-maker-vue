@@ -23,7 +23,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/vue": "^6.4.2",
-    "@vitejs/plugin-vue": "^2.0.0",
+    "@vitejs/plugin-vue": "^5.2.4",
     "concurrently": "^7.0.0",
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
@@ -31,7 +31,7 @@
     "eslint-plugin-vue": "^8.3.0",
     "jest": "^27.4.7",
     "prettier": "^2.5.1",
-    "vite": "^2.7.2"
+    "vite": "^6.3.5"
   },
   "browserslist": [
     "> 1%",
