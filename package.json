@@ -21,7 +21,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/vue": "^6.4.2",
     "@vitejs/plugin-vue": "^2.0.0",
     "concurrently": "^7.0.0",
